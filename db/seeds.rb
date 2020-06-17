@@ -1,4 +1,6 @@
-100.times do
+
+Product.destroy_all
+10.times do
   Product.create(
     name: Faker::Commerce.product_name,
     description: Faker::Lorem.sentence,
@@ -8,3 +10,16 @@
 end
 
 puts "100 Products Seeded"
+
+SolarSystem.destroy_all
+Planet.destroy_all
+
+10.times do |i|
+  s=SolarSystem.create(name: Faker::Space.galaxy)
+  5.times do |j|
+    s.planets.create(name: Faker::Space.meteorite, inhabited: false, size: rand(1000...10000))
+  end
+end 
+
+puts "solar system seeded size is #{SolarSystem.all.size}"
+puts "planets seeded size is #{Planet.all.size}"
